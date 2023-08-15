@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "minirt.h": "c",
+        "get_next_line.h": "c",
+        "stdlib.h": "c"
+    }
+}
