@@ -1,0 +1,27 @@
+Masterstruct
+contient:
+A, qui contient:
+	1. Ratio de lumière.
+	2. Code RGB.
+C, qui contient:
+	1. Coordonées xyz du point de vue.
+	2. Vecteur d'orientation 3d de chaque axe x, y, z.
+	3. FOV : champ de vision horizontal en degrés.
+L, qui contient:
+	1. Coordonées xyz du point de lumière.
+	2. ratio de luminosité.
+	3. Code RGB de la couleur de la lumière.
+sp, qui contient:
+	1. Coordonées xyz du point de sphère.
+	2. Le diamètre de la sphère.
+	3. Code RGB de la sphère.
+pl, qui contient:
+	1. Coordonées xyz d'un point de la plan.
+	2. Vecteur d'orientation 3d pour chaque axe x, y, z.
+	3. Code RGB du plan.
+cy, qui continet:
+	1. Coordonées xyz du centre du cylindre.
+	2. Vecteur normalisé de l'axe du cylindre pour chaque axe x, y, z.
+	3. Le diamètre du cylindre.
+	4. La hauteur du cylindre.
+	5. Le code RGB du cylindre.
