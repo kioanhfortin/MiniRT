@@ -13,7 +13,7 @@
 NAME = minirt
 
 MLX = MLX42/build/libmlx42.a
-GIT_MLX = git@github.com:codam-coding-college/MLX42.git
+GIT_MLX = https://github.com/codam-coding-college/MLX42.git
 
 ###############################################################################
 #							    SYSTEM VARIABLES       					  	  #

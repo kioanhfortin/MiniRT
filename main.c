@@ -67,6 +67,8 @@ int main(int argc, char **argv)
         ft_parsing(mss, argv[1]);
         mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
         mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+        mlx_close_hook(mss->mlx, on_destroy, mss->mlx);
+        mlx_key_hook(mss->mlx, print_key, mss->mlx);
         mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
         mlx_image_to_window(mss->mlx, mss->img, 0, 0);
         mlx_loop(mss->mlx);

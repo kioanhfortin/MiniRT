@@ -25,19 +25,71 @@
 # define WINDOW_HEIGHT 1180
 
 /*--  DATA STRUCTURES  --*/
-typedef struct s_mss
-{
-    mlx_image_t		*img;
-	mlx_t			*mlx;
-    int **mat;
-    
-}   t_mss;
 
 typedef struct s_list
 {
 	void			*str;
 	struct t_list	*next;
 }					t_list;
+
+typedef struct s_alight
+{
+	int	ratio;
+	int	rgb[3];
+}	t_alight;
+
+typedef struct s_cam
+{
+	int	pov[3];
+	int	vec[3];
+	int	fov;
+}	t_cam;
+
+typedef struct s_light
+{
+	int	ol[3];
+	int ratio;
+	int rgb[3];
+}	t_light;
+
+typedef struct s_sp
+{
+	int	spo[3];
+	int	diam;
+	int	rgb[3];
+	int	**mod;
+}	t_sp;
+
+typedef struct s_pl
+{
+	int	po[3];
+	int	vec[3];
+	int	rgb[3];
+	int	**mod;
+}	t_pl;
+
+typedef struct s_cy
+{
+	int	co[3];
+	int	vec[3];
+	int	diam;
+	int	height;
+	int	rgb[3];
+	int	**mod;
+}	t_cy;
+
+typedef struct s_mss
+{
+    mlx_image_t		*img;
+	mlx_t			*mlx;
+    int 			**mat;
+	t_alight		amb;
+	t_cam			vis;
+	t_light			sun;
+	t_sp			**circ;
+	t_pl			**tac;
+	t_cy			**cyl;
+}   				t_mss;
 
 /*--  MEMORY FONCTION  ---*/
 void	ft_lstadd_back(t_list **lst, t_list *new);
@@ -52,5 +104,9 @@ void    ft_parsing(t_mss *mss, char *argv);
 
 /*--  COLOR FONCTION  ---*/
 int	    get_rgba(int r, int g, int b, int a);
+
+/*-- KEYHOOK FUNCTIONS ---*/
+void	on_destroy(void *param);
+void	print_key(mlx_key_data_t keydata, void *param);
 
 #endif
