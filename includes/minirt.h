@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/18 15:11:55 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/18 16:14:01 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ int    ft_which_maj(char *str, int *flag_a, int *flag_l, int *flag_c);
 
 /*--  COLOR FONCTION  ---*/
 int	    get_rgba(int r, int g, int b, int a);
+
+/*--  OBJECT FONCTION  ---*/
+void    ft_plan_drawing(t_mss *mss);
 
 /*--  ERROR FONCTION  ---*/
 void    ft_write_error(void);

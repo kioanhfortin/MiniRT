@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:06:17 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/18 15:28:24 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/18 16:16:04 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,110 +53,34 @@ void    ft_parsing(t_mss *mss, char *argv)
     ft_print_list(file);
 }
 
-void    ft_check_legit(t_list *file)
+void    ft_plan_drawing(t_mss *mss)
 {
-    int i;
-    int flag_a;
-    int flag_l;
-    int flag_c;
+    // (void)mss;
+    int x;
+    int y;
+    int z;
+    double a;
+    double b;
+    double c;
+    double d;
     
-
-    i = 0;
-    flag_a = 0;
-    flag_l = 0;
-    flag_c = 0;
-    while (file)
+    a = 0.0;
+    b = 1.0;
+    c = 0.0;
+    d = 0.0;
+    y = 0;
+    while (y < 800)
     {
-        if (file->str)
+        x = 0;
+        while (x < 800)
         {
-            if (ft_check_only_one_per_line(file->str) == 0)
-                ft_write_error_2(file);
-            if (ft_which_maj(file->str, &flag_a, &flag_l, &flag_c) == 0)
-                ft_write_error_3(file);
+            z = ((-a*x - b*y - d) / c);
+            if (a * x + b * y + d == -c * z)
+                mlx_put_pixel(mss->img, x, y, get_rgba(199, 0, 57, 255));
+            x++;
         }
-        file = (struct s_list *)file->next;
+        y++;
     }
-}
-
-int    ft_which_maj(char *str, int *flag_a, int *flag_l, int *flag_c)
-{
-    int i;
-
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == 'A' && *flag_a == 0)
-        {
-            *flag_a = 1;
-            return (1);
-        }
-        if (str[i] == 'L' && *flag_l == 0)
-        {
-            *flag_l = 1;
-            return (1);
-        }
-        if (str[i] == 'C' && *flag_c == 0)
-        {
-            *flag_c = 1;
-            return (1);
-        }
-        if (str[i] == 'A' && *flag_a == 1)
-            return(0);
-        if (str[i] == 'L' && *flag_l == 1)
-            return(0);
-        if (str[i] == 'C' && *flag_c == 1)
-            return(0);
-        i++;
-    }
-    return (1);
-}
-
-void    ft_write_error_2(t_list *file)
-{
-    (void)file;
-    ft_putstr_fd("error file : no backslash between each element\n", 2);
-    //free file;
-    exit(0);
-}
-
-void    ft_write_error_3(t_list *file)
-{
-    (void)file;
-    ft_putstr_fd("error file : multiple maj\n", 2);
-    //free file;
-    exit(0);
-}
-
-int    ft_check_only_one_per_line(char *str)
-{
-    int i;
-    int flag;
-
-    i = 0;
-    flag = 0;
-    while (str[i])
-    {
-        if (ft_is_element_min(str, i) == 1 && ft_is_element_maj(str, i) == 1 && flag == 0)
-            flag = 1;
-        else if (ft_is_element_min(str, i) == 1 && ft_is_element_maj(str, i) == 1 && flag == 1)
-            return(0);
-        i++;
-    }
-    return (1);
-}
-
-int     ft_is_element_min(char *str, int i)
-{
-    if ((str[i] == 'p' && str[i + 1] == 'l') || (str[i] == 's' && str[i + 1] == 'p') || (str[i] == 'c' && str[i + 1] == 'y'))
-        return (1);
-    return (0);
-}
-
-int     ft_is_element_maj(char *str, int i)
-{
-    if (str[i] == 'A' || str[i] == 'C' || str[i] == 'L')
-        return (1);
-    return (0);
 }
 
 int main(int argc, char **argv)
@@ -172,11 +96,12 @@ int main(int argc, char **argv)
     if (argc == 2)
     {
         ft_parsing(mss, argv[1]);
-        // mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
-        // mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+        mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
+        mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+        ft_plan_drawing(mss);
         // mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
-        // mlx_image_to_window(mss->mlx, mss->img, 0, 0);
-        // mlx_loop(mss->mlx);
+        mlx_image_to_window(mss->mlx, mss->img, 0, 0);
+        mlx_loop(mss->mlx);
     }
     else
         printf("error\n");
