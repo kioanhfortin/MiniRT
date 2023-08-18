@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/15 17:28:30 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/18 12:48:06 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,15 @@ void	ft_putstr_fd(char *s, int fd);
 
 /*--  02 - PARSING FONCTION  ---*/
 void    ft_parsing(t_mss *mss, char *argv);
+char 	*ft_copy_ext(char *str, int i);
+int 	ft_tchek_file_name(char *str);
+int		ft_strcmp(char *s1, char *s2);
+int 	ft_check_point(int i, char *str);
 
 /*--  COLOR FONCTION  ---*/
 int	    get_rgba(int r, int g, int b, int a);
+
+/*--  ERROR FONCTION  ---*/
+void    ft_write_error(void);
 
 #endif

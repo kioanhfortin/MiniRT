@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:06:17 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/15 17:32:48 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/18 12:54:15 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ void    ft_parsing(t_mss *mss, char *argv)
     (void)mss;
     i = 0;
     file = NULL;
+    ft_tchek_file_name(argv);
     fd = open(argv, O_RDONLY);
     file = ft_lstnew(get_next_line(fd));
     node = file;
     str = file->str;
     if (file->str == NULL)
-        printf("error\n");
+        ft_write_error();
     i++;
     while (str != NULL)
     {
@@ -47,14 +48,19 @@ void    ft_parsing(t_mss *mss, char *argv)
 		node = (struct s_list *)node->next;
 		i++;
     }
+    // ft_check_legit(file);
     // ft_fetch_info(file);
     ft_print_list(file);
 }
 
+// ft_check_legit(t_list *file)
+// {
+    
+// }
+
 int main(int argc, char **argv)
 {
     t_mss   *mss;
-    (void)argv;
     
     mss = ft_calloc(sizeof(t_mss), 1);
     if (mss == NULL)
@@ -65,11 +71,11 @@ int main(int argc, char **argv)
     if (argc == 2)
     {
         ft_parsing(mss, argv[1]);
-        mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
-        mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-        mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
-        mlx_image_to_window(mss->mlx, mss->img, 0, 0);
-        mlx_loop(mss->mlx);
+        // mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
+        // mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+        // mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
+        // mlx_image_to_window(mss->mlx, mss->img, 0, 0);
+        // mlx_loop(mss->mlx);
     }
     else
         printf("error\n");
