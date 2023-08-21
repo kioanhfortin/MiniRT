@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/20 14:09:54 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/21 14:54:14 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+#include <math.h>
 # include <stdlib.h>
 
 # define WINDOW_WIDTH 2000
@@ -68,9 +69,10 @@ int	    get_rgba(int r, int g, int b, int a);
 
 /*--  OBJECT FONCTION  ---*/
 void    ft_plan_drawing(t_mss *mss);
-// void    ft_apply_trans(t_mss *mss, int x, int y, int z);
 double	ft_deg_rad(int deg);
-int ft_is_out_of_range(int x, int y);
+int 	ft_is_out_of_range(int x, int y);
+void    ft_cylinder_drawing(t_mss *mss);
+// void    ft_apply_trans(t_mss *mss, int x, int y, int z);
 
 /*--  ERROR FONCTION  ---*/
 void    ft_write_error(void);
