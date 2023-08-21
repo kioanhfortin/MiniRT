@@ -48,8 +48,7 @@ void    ft_parsing(t_mss *mss, char *argv)
 		node = (struct s_list *)node->next;
 		i++;
     }
-    // ft_check_legit(file);
-    // ft_fetch_info(file);
+    ft_fetch_info(file, mss);
     ft_print_list(file);
 }
 
@@ -71,11 +70,13 @@ int main(int argc, char **argv)
     if (argc == 2)
     {
         ft_parsing(mss, argv[1]);
-        // mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
-        // mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-        // mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
-        // mlx_image_to_window(mss->mlx, mss->img, 0, 0);
-        // mlx_loop(mss->mlx);
+        mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
+        mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+        mlx_close_hook(mss->mlx, on_destroy, mss->mlx);
+        mlx_key_hook(mss->mlx, print_key, mss->mlx);
+        mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
+        mlx_image_to_window(mss->mlx, mss->img, 0, 0);
+        mlx_loop(mss->mlx);
     }
     else
         printf("error\n");

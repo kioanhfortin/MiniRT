@@ -13,7 +13,7 @@
 NAME = minirt
 
 MLX = MLX42/build/libmlx42.a
-GIT_MLX = git@github.com:codam-coding-college/MLX42.git
+GIT_MLX = https://github.com/codam-coding-college/MLX42.git
 
 ###############################################################################
 #							    SYSTEM VARIABLES       					  	  #
@@ -27,10 +27,14 @@ RM = rm -r
 #							 		FILES								  	  #
 ###############################################################################
 
-SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c ft_check_ext.c\
+SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c ft_check_ext.c parsing.c\
 		includes/get_next_line.c includes/get_next_line_utilis.c\
 
 OBJS = $(SRCS:.c=.o)
+
+LIBDIR = includes/libft/
+
+LIBFT = libft.a
 
 ###############################################################################
 #							 		RECIPES								  	  #
@@ -39,7 +43,8 @@ OBJS = $(SRCS:.c=.o)
 all : install $(NAME)
 
 $(NAME) : $(MLX) $(OBJS)
-	$(CC) $(OBJS) $(MLX) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib" -o $(NAME) $(MLX)
+	$(MAKE) -C $(LIBDIR)
+	$(CC) $(OBJS) $(LIBDIR)$(LIBFT) $(MLX) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib" -o $(NAME) $(MLX)
 
 install :
 
