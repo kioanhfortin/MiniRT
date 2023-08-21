@@ -106,6 +106,14 @@ void	ft_putstr_fd(char *s, int fd);
 /*--  02 - PARSING FONCTION  ---*/
 void    ft_parsing(t_mss *mss, char *argv);
 int		ft_atoi(const char *str);
+void 	ft_fetch_info(t_list *file, t_mss *mss);
+void	ft_fetch_alight(char *str, t_mss *mss);
+void	ft_fetch_cam(char *str, t_mss *mss);
+void	ft_fetch_light(char *str, t_mss *mss);
+t_pl	*ft_fetch_plan(char *str);
+t_sp	*ft_fetch_sphere(char *str);
+t_cy	*ft_fetch_cylinder(char *str);
+char	*acquire_data(char *inc, int nums[3]);
 
 /*--  COLOR FONCTION  ---*/
 int	    get_rgba(int r, int g, int b, int a);

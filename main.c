@@ -47,7 +47,7 @@ void    ft_parsing(t_mss *mss, char *argv)
 		node = (struct s_list *)node->next;
 		i++;
     }
-    // ft_fetch_info(file);
+    ft_fetch_info(file, mss);
     ft_print_list(file);
 }
 

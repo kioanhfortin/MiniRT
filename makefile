@@ -27,7 +27,7 @@ RM = rm -r
 #							 		FILES								  	  #
 ###############################################################################
 
-SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c\
+SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c parsing.c\
 		includes/get_next_line.c includes/get_next_line_utilis.c\
 
 OBJS = $(SRCS:.c=.o)
