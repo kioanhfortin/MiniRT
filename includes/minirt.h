@@ -90,6 +90,9 @@ typedef struct s_mss
 	t_sp			**circ;
 	t_pl			**tac;
 	t_cy			**cyl;
+	int				plnum;
+	int				spnum;
+	int				cylnum;
 }   				t_mss;
 
 /*--  MEMORY FONCTION  ---*/
