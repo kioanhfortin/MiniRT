@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:06:17 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/18 12:54:15 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/21 11:18:02 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,23 @@ void    ft_parsing(t_mss *mss, char *argv)
 		node = (struct s_list *)node->next;
 		i++;
     }
-    ft_fetch_info(file, mss);
+    ft_check_legit(file);
+    ft_fetch_info(file);
     ft_print_list(file);
 }
 
-// ft_check_legit(t_list *file)
-// {
-    
-// }
+void    ft_init_mat(t_mss *mss)
+{
+    int i;
+
+    i = 2;
+    mss->modif_mat = ft_calloc(sizeof(int*), 3);
+    while (i < 2)
+    {
+        mss->modif_mat[i] = ft_calloc(sizeof(int), 4);
+        i++;
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -70,11 +79,11 @@ int main(int argc, char **argv)
     if (argc == 2)
     {
         ft_parsing(mss, argv[1]);
+        ft_init_mat(mss);
         mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
         mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-        mlx_close_hook(mss->mlx, on_destroy, mss->mlx);
-        mlx_key_hook(mss->mlx, print_key, mss->mlx);
-        mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
+        ft_plan_drawing(mss);
+        // mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
         mlx_image_to_window(mss->mlx, mss->img, 0, 0);
         mlx_loop(mss->mlx);
     }
