@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:06:17 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/18 16:16:04 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/20 14:20:03 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,33 +53,16 @@ void    ft_parsing(t_mss *mss, char *argv)
     ft_print_list(file);
 }
 
-void    ft_plan_drawing(t_mss *mss)
+void    ft_init_mat(t_mss *mss)
 {
-    // (void)mss;
-    int x;
-    int y;
-    int z;
-    double a;
-    double b;
-    double c;
-    double d;
-    
-    a = 0.0;
-    b = 1.0;
-    c = 0.0;
-    d = 0.0;
-    y = 0;
-    while (y < 800)
+    int i;
+
+    i = 2;
+    mss->modif_mat = ft_calloc(sizeof(int*), 3);
+    while (i < 2)
     {
-        x = 0;
-        while (x < 800)
-        {
-            z = ((-a*x - b*y - d) / c);
-            if (a * x + b * y + d == -c * z)
-                mlx_put_pixel(mss->img, x, y, get_rgba(199, 0, 57, 255));
-            x++;
-        }
-        y++;
+        mss->modif_mat[i] = ft_calloc(sizeof(int), 4);
+        i++;
     }
 }
 
@@ -96,6 +79,7 @@ int main(int argc, char **argv)
     if (argc == 2)
     {
         ft_parsing(mss, argv[1]);
+        ft_init_mat(mss);
         mss->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MINIRT", false);
         mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
         ft_plan_drawing(mss);

@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/18 16:14:01 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/20 14:09:54 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_mss
     mlx_image_t		*img;
 	mlx_t			*mlx;
     int **mat;
+	int **modif_mat;
     
 }   t_mss;
 
@@ -46,6 +47,9 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_listclear(t_list *head);
 void    ft_print_list(t_list *file);
 void	ft_putstr_fd(char *s, int fd);
+
+/*--  02 - INITIATION FONCTION  ---*/
+void    ft_init_mat(t_mss *mss);
 
 /*--  02 - PARSING FONCTION  ---*/
 void    ft_parsing(t_mss *mss, char *argv);
@@ -64,6 +68,9 @@ int	    get_rgba(int r, int g, int b, int a);
 
 /*--  OBJECT FONCTION  ---*/
 void    ft_plan_drawing(t_mss *mss);
+// void    ft_apply_trans(t_mss *mss, int x, int y, int z);
+double	ft_deg_rad(int deg);
+int ft_is_out_of_range(int x, int y);
 
 /*--  ERROR FONCTION  ---*/
 void    ft_write_error(void);
