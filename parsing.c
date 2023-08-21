@@ -93,6 +93,8 @@ void	ft_fetch_light(char *str, t_mss *mss)
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	mss->sun.ratio = ft_atoi(inc);
+	while (*inc != '\0' && *inc != ' ')
+		inc++;
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, mss->sun.rgb);
@@ -106,16 +108,17 @@ t_pl	*ft_fetch_plan(char *str)
 
 	plan = ft_calloc (1, sizeof(t_pl));
 	inc = str;
-	inc++;
+	inc += 2;
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, plan->po);
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, plan->vec);
+	printf("%d %d %d \n", plan->vec[0], plan->vec[1], plan->vec[2]);
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
-	printf("went through\n");
+	
 	inc = acquire_data(inc, plan->rgb);
 	return (plan);
 }
@@ -127,7 +130,7 @@ t_sp	*ft_fetch_sphere(char *str)
 
 	inc = str;
 	sphere = ft_calloc(1, sizeof(t_sp));
-	inc++;
+	inc += 2;
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, sphere->spo);
@@ -150,7 +153,8 @@ t_cy	*ft_fetch_cylinder(char *str)
 
 	inc = str;
 	cylinder = ft_calloc(1, sizeof(t_cy));
-	while (++*inc != '\0' && *inc == ' ')
+	inc += 2;
+	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, cylinder->co);
 	while (*inc != '\0' && *inc == ' ')
@@ -182,10 +186,12 @@ char	*acquire_data(char *inc, int nums[3])
 		while (i < 3)
 		{
 			nums[i] = ft_atoi(inc);
+			printf("%d\n", nums[i]);
 			while (*inc != ',' && *inc != ' ')
 				inc++;
 			if (*inc == ',')
 				inc++;
+			printf("%c\n", *inc);
 			i++;
 		}
 	}
