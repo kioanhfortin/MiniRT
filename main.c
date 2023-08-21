@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:06:17 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/21 11:18:02 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/21 11:19:30 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ void    ft_parsing(t_mss *mss, char *argv)
 		i++;
     }
     ft_check_legit(file);
-    ft_fetch_info(file);
+    ft_fetch_info(file, mss);
     ft_print_list(file);
 }
 
-void    ft_init_mat(t_mss *mss)
-{
-    int i;
+// void    ft_init_mat(t_mss *mss)
+// {
+//     int i;
 
-    i = 2;
-    mss->modif_mat = ft_calloc(sizeof(int*), 3);
-    while (i < 2)
-    {
-        mss->modif_mat[i] = ft_calloc(sizeof(int), 4);
-        i++;
-    }
-}
+//     i = 2;
+//     mss->modif_mat = ft_calloc(sizeof(int*), 3);
+//     while (i < 2)
+//     {
+//         mss->modif_mat[i] = ft_calloc(sizeof(int), 4);
+//         i++;
+//     }
+// }
 
 int main(int argc, char **argv)
 {
