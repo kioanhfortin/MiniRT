@@ -55,7 +55,6 @@ void	ft_fetch_alight(char *str, t_mss *mss)
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, mss->amb.rgb);
-	printf("went through\n");
 }
 
 void	ft_fetch_cam(char *str, t_mss *mss)
@@ -75,8 +74,6 @@ void	ft_fetch_cam(char *str, t_mss *mss)
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	mss->vis.fov = ft_atoi(inc);
-	printf("%d\n", mss->vis.fov);
-	printf("went through\n");
 }
 
 void	ft_fetch_light(char *str, t_mss *mss)
@@ -98,7 +95,6 @@ void	ft_fetch_light(char *str, t_mss *mss)
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, mss->sun.rgb);
-	printf("went through\n");
 }
 
 t_pl	*ft_fetch_plan(char *str)
@@ -115,10 +111,8 @@ t_pl	*ft_fetch_plan(char *str)
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, plan->vec);
-	printf("%d %d %d \n", plan->vec[0], plan->vec[1], plan->vec[2]);
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
-	
 	inc = acquire_data(inc, plan->rgb);
 	return (plan);
 }
@@ -143,36 +137,33 @@ t_sp	*ft_fetch_sphere(char *str)
 		inc++;
 	inc = acquire_data(inc, sphere->rgb);
 	return (sphere);
-	printf("went through\n");
 }
 
 t_cy	*ft_fetch_cylinder(char *str)
 {
 	t_cy	*cylinder;
-	char	*inc;
 
-	inc = str;
 	cylinder = ft_calloc(1, sizeof(t_cy));
-	inc += 2;
-	while (*inc != '\0' && *inc == ' ')
-		inc++;
-	inc = acquire_data(inc, cylinder->co);
-	while (*inc != '\0' && *inc == ' ')
-		inc++;
-	inc = acquire_data(inc, cylinder->vec);
-	while (*inc != '\0' && *inc == ' ')
-		inc++;
-	cylinder->diam = ft_atoi(inc);
-	while (*inc != '\0' && *inc != ' ')
-		inc++;
-	while (*inc != '\0' && *inc == ' ')
-		inc++;
-	cylinder->height = ft_atoi(inc);
-	while (*inc != '\0' && *inc != ' ')
-		inc++;
-	while (*inc != '\0' && *inc == ' ')
-		inc++;
-	inc = acquire_data(inc, cylinder->rgb);
+	str += 2;
+	while (*str != '\0' && *str == ' ')
+		str++;
+	str = acquire_data(str, cylinder->co);
+	while (*str != '\0' && *str == ' ')
+		str++;
+	str = acquire_data(str, cylinder->vec);
+	while (*str != '\0' && *str == ' ')
+		str++;
+	cylinder->diam = ft_atoi(str);
+	while (*str != '\0' && *str != ' ')
+		str++;
+	while (*str != '\0' && *str == ' ')
+		str++;
+	cylinder->height = ft_atoi(str);
+	while (*str != '\0' && *str != ' ')
+		str++;
+	while (*str != '\0' && *str == ' ')
+		str++;
+	str = acquire_data(str, cylinder->rgb);
 	return (cylinder);
 }
 
@@ -186,18 +177,15 @@ char	*acquire_data(char *inc, int nums[3])
 		while (i < 3)
 		{
 			nums[i] = ft_atoi(inc);
-			printf("%d\n", nums[i]);
 			while (*inc != ',' && *inc != ' ')
 				inc++;
 			if (*inc == ',')
 				inc++;
-			printf("%c\n", *inc);
 			i++;
 		}
 	}
 	return (inc);
 }
-
 
 void	acquire_nums(t_mss *mss, t_list *file)
 {
