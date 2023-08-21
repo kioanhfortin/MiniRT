@@ -15,6 +15,7 @@
 
 # include "./get_next_line.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+//# include "./libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -101,6 +102,7 @@ void	ft_putstr_fd(char *s, int fd);
 
 /*--  02 - PARSING FONCTION  ---*/
 void    ft_parsing(t_mss *mss, char *argv);
+int		ft_atoi(const char *str);
 
 /*--  COLOR FONCTION  ---*/
 int	    get_rgba(int r, int g, int b, int a);

@@ -32,6 +32,10 @@ SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c\
 
 OBJS = $(SRCS:.c=.o)
 
+LIBDIR = includes/libft/
+
+LIBFT = libft.a
+
 ###############################################################################
 #							 		RECIPES								  	  #
 ###############################################################################
@@ -39,7 +43,8 @@ OBJS = $(SRCS:.c=.o)
 all : install $(NAME)
 
 $(NAME) : $(MLX) $(OBJS)
-	$(CC) $(OBJS) $(MLX) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib" -o $(NAME) $(MLX)
+	$(MAKE) -C $(LIBDIR)
+	$(CC) $(OBJS) $(LIBDIR)$(LIBFT) $(MLX) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib" -o $(NAME) $(MLX)
 
 install :
 
