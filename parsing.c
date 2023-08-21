@@ -19,6 +19,7 @@ void	ft_fetch_info(t_list *file, t_mss *mss)
 
 	temp = (char *)file->str;
 	help = file;
+	acquire_nums(mss, file);
 	mss->plnum = 0;
 	mss->spnum = 0;
 	mss->cylnum = 0;
@@ -30,12 +31,12 @@ void	ft_fetch_info(t_list *file, t_mss *mss)
 			ft_fetch_cam(temp, mss);
 		else if (*temp == 'L')
 			ft_fetch_light(temp, mss);
-		/*else if (*temp == 'p')
+		else if (*temp == 'p')
 			mss->tac[mss->plnum++] = ft_fetch_plan(temp);
 		else if (*temp == 's')
 			mss->circ[mss->spnum++] = ft_fetch_sphere(temp);
 		else if (*temp == 'c')
-			mss->cyl[mss->cylnum++] = ft_fetch_cylinder(temp);*/
+			mss->cyl[mss->cylnum++] = ft_fetch_cylinder(temp);
 		help = (struct s_list *)help->next;
 		temp = (char *)help->str;
 	}
@@ -103,7 +104,7 @@ t_pl	*ft_fetch_plan(char *str)
 	char	*inc;
 	t_pl	*plan;
 
-	plan = ft_calloc (1, sizeof(t_pl *));
+	plan = ft_calloc (1, sizeof(t_pl));
 	inc = str;
 	inc++;
 	while (*inc != '\0' && *inc == ' ')
@@ -114,9 +115,9 @@ t_pl	*ft_fetch_plan(char *str)
 	inc = acquire_data(inc, plan->vec);
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
+	printf("went through\n");
 	inc = acquire_data(inc, plan->rgb);
 	return (plan);
-	printf("went through\n");
 }
 
 t_sp	*ft_fetch_sphere(char *str)
@@ -125,7 +126,7 @@ t_sp	*ft_fetch_sphere(char *str)
 	char	*inc;
 
 	inc = str;
-	sphere = ft_calloc(1, sizeof(t_sp *));
+	sphere = ft_calloc(1, sizeof(t_sp));
 	inc++;
 	while (*inc != '\0' && *inc == ' ')
 		inc++;
@@ -148,7 +149,7 @@ t_cy	*ft_fetch_cylinder(char *str)
 	char	*inc;
 
 	inc = str;
-	cylinder = ft_calloc(1, sizeof(t_cy *));
+	cylinder = ft_calloc(1, sizeof(t_cy));
 	while (++*inc != '\0' && *inc == ' ')
 		inc++;
 	inc = acquire_data(inc, cylinder->co);
@@ -189,4 +190,31 @@ char	*acquire_data(char *inc, int nums[3])
 		}
 	}
 	return (inc);
+}
+
+
+void	acquire_nums(t_mss *mss, t_list *file)
+{
+	t_list	*help;
+	char	*temp;
+
+	help = file;
+	temp = (char *)help->str;
+	mss->plnum = 0;
+	mss->cylnum = 0;
+	mss->spnum = 0;
+	while (temp != NULL)
+	{
+		if (*temp == 'p')
+			mss->plnum++;
+		else if (*temp == 'c')
+			mss->cylnum++;
+		else if (*temp == 's')
+			mss->spnum++;
+		help = (struct s_list *)help->next;
+		temp = (char *)help->str;
+	}
+	mss->tac = ft_calloc(1 + mss->plnum, sizeof(t_pl *));
+	mss->circ = ft_calloc(1 + mss->spnum, sizeof(t_sp *));
+	mss->cyl = ft_calloc(1 + mss->cylnum, sizeof(t_cy *));
 }
