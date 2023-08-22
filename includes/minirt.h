@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/21 14:54:14 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/21 17:23:49 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void    ft_plan_drawing(t_mss *mss);
 double	ft_deg_rad(int deg);
 int 	ft_is_out_of_range(int x, int y);
 void    ft_cylinder_drawing(t_mss *mss);
+void    ft_circle_drawing(t_mss *mss);
+void    ft_circle_2_drawing(t_mss *mss);
 // void    ft_apply_trans(t_mss *mss, int x, int y, int z);
 
 /*--  ERROR FONCTION  ---*/
