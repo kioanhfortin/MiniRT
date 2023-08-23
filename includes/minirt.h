@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/21 17:23:49 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/22 16:40:13 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,31 @@
 # define WINDOW_HEIGHT 1180
 
 /*--  DATA STRUCTURES  --*/
+typedef struct s_cam
+{
+	double	coor_position[3]; 	// Camera position (x, y, z);
+	double	coor_look[3];		// Point where the camera is looking;
+	double	view_direction_up[3];
+	double	view_direction_right[3];
+	double 	up[3];				// Up vector (normalized)
+	double 	right[3];			// Right vector & up vector are needed to construct le systeme de coor local de la camera
+	
+	double	fov;				//Field of view in degrees
+	double	aspect_ratio;		//Width/height ratio of the sensor
+	double 	focal_length;		//Focal lenght of the lens
+	double	aperture;			//Aperture size for depth of field
+	double	view_direction_norm_up;	//assurer la precision des calculs de vision en 3D
+	double	view_direction_norm_right;
+	double half_width;
+	double half_height;
+}	t_cam;
 typedef struct s_mss
 {
+    t_cam	*cam;
     mlx_image_t		*img;
 	mlx_t			*mlx;
     int **mat;
 	int **modif_mat;
-    
 }   t_mss;
 
 typedef struct s_list
@@ -40,6 +58,7 @@ typedef struct s_list
 	void			*str;
 	struct t_list	*next;
 }					t_list;
+
 
 /*--  MEMORY FONCTION  ---*/
 void	ft_lstadd_back(t_list **lst, t_list *new);
@@ -75,6 +94,10 @@ void    ft_cylinder_drawing(t_mss *mss);
 void    ft_circle_drawing(t_mss *mss);
 void    ft_circle_2_drawing(t_mss *mss);
 // void    ft_apply_trans(t_mss *mss, int x, int y, int z);
+
+/*--  CAMERA FONCTION  ---*/
+void	ft_set_up_camera(t_mss *mss);
+void    ft_affichage_plan_camera(t_mss *mss);
 
 /*--  ERROR FONCTION  ---*/
 void    ft_write_error(void);

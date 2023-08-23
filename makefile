@@ -6,7 +6,7 @@
 #    By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/15 14:33:03 by kfortin           #+#    #+#              #
-#    Updated: 2023/08/21 15:20:18 by kfortin          ###   ########.fr        #
+#    Updated: 2023/08/22 16:40:37 by kfortin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ RM = rm -r
 
 SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c ft_check_ext.c ft_check_file.c\
 		includes/get_next_line.c includes/get_next_line_utilis.c\
-		ft_plan.c ft_cylindre.c ft_circle.c\
+		ft_plan.c ft_cylindre.c ft_circle.c ft_camera.c\
 
 OBJS = $(SRCS:.c=.o)
 
