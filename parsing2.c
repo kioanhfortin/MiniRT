@@ -64,7 +64,10 @@ t_cy	*ft_fetch_cylinder(char *str)
 		str++;
 	str = acquire_data(str, cylinder->co);
 	while (*str != '\0' && *str == ' ')
+	{
 		str++;
+		printf("hello\n");	
+	}
 	str = acquire_data(str, cylinder->vec);
 	while (*str != '\0' && *str == ' ')
 		str++;

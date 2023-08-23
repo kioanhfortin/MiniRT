@@ -35,8 +35,8 @@ void	ft_fetch_info(t_list *file, t_mss *mss)
 			mss->tac[mss->plnum++] = ft_fetch_plan(temp);
 		else if (*temp == 's')
 			mss->circ[mss->spnum++] = ft_fetch_sphere(temp);
-		else if (*temp == 'c')
-			mss->cyl[mss->cylnum++] = ft_fetch_cylinder(temp);
+		/*else if (*temp == 'c')
+			mss->cyl[mss->cylnum++] = ft_fetch_cylinder(temp);*/
 		help = (struct s_list *)help->next;
 		temp = (char *)help->str;
 	}
