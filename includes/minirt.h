@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/23 13:51:27 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 13:57:03 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define WINDOW_HEIGHT 1180
 
 /*--  DATA STRUCTURES  --*/
-typedef struct s_cam
+typedef struct s_cam2
 {
 	double	coor_position[3]; 	// Camera position (x, y, z);
 	double	coor_look[3];		// Point where the camera is looking;
@@ -44,15 +44,7 @@ typedef struct s_cam
 	double	view_direction_norm_right;
 	double half_width;
 	double half_height;
-}	t_cam;
-typedef struct s_mss
-{
-    t_cam	*cam;
-    mlx_image_t		*img;
-	mlx_t			*mlx;
-    int **mat;
-	int **modif_mat;
-}   t_mss;
+}	t_cam2;
 
 typedef struct s_list
 {
@@ -108,6 +100,7 @@ typedef struct s_cy
 
 typedef struct s_mss
 {
+ 	t_cam2			*cam2;
     mlx_image_t		*img;
 	mlx_t			*mlx;
     int 			**mat;

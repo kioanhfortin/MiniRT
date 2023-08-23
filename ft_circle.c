@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 15:07:27 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/21 17:28:00 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 14:15:14 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,9 @@ void    ft_circle_2_drawing(t_mss *mss)
             {
                 equation = pow(x - a, 2) + pow(y - b, 2) + pow(z - c, 2);
                 if (equation <= pow(r, 2))
+                {
                     mlx_put_pixel(mss->img, x + 100, y + 100, get_rgba(88, 24, 69, 255));
+                }
                 z++;
             }
             y++;

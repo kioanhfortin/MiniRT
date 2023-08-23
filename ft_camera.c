@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 13:12:48 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/22 16:41:52 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 13:57:39 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,58 +17,58 @@ void	ft_set_up_camera(t_mss *mss)
     int i;
 
     i = 0;
-    mss->cam = ft_calloc(sizeof(t_cam), 1);
-    mss->cam->coor_position[0] = -50.0;
-    mss->cam->coor_position[1] = 0.0;
-    mss->cam->coor_position[2] = 20.0;
+    mss->cam2 = ft_calloc(sizeof(t_cam2), 1);
+    mss->cam2->coor_position[0] = -50.0;
+    mss->cam2->coor_position[1] = 0.0;
+    mss->cam2->coor_position[2] = 20.0;
     
-    mss->cam->up[0] = 0.0;
-    mss->cam->up[1] = 0.0;
-    mss->cam->up[2] = 1.0;
+    mss->cam2->up[0] = 0.0;
+    mss->cam2->up[1] = 0.0;
+    mss->cam2->up[2] = 1.0;
     
-    mss->cam->fov = 70;
-    mss->cam->aspect_ratio = 0.0;
-    mss->cam->focal_length = 1.0;
+    mss->cam2->fov = 70;
+    mss->cam2->aspect_ratio = 0.0;
+    mss->cam2->focal_length = 1.0;
     
     // Calcul de l'aspect ratio
-    mss->cam->aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
+    mss->cam2->aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
 
     while (i < 3)
     {
-        mss->cam->coor_look[i] = mss->cam->coor_position[i] + mss->cam->up[i];
+        mss->cam2->coor_look[i] = mss->cam2->coor_position[i] + mss->cam2->up[i];
         i++;
     }
     i = 0;
     while (i < 3)
     {
-        mss->cam->view_direction_up[i] = mss->cam->coor_look[i] - mss->cam->coor_position[i];
+        mss->cam2->view_direction_up[i] = mss->cam2->coor_look[i] - mss->cam2->coor_position[i];
         i++;
     }
     // Calcul du vecteur right (cross product)
-    mss->cam->right[0] = mss->cam->view_direction_up[1] * mss->cam->up[2] - mss->cam->view_direction_up[2] * mss->cam->up[1];
-    mss->cam->right[1] = mss->cam->view_direction_up[2] * mss->cam->up[0] - mss->cam->view_direction_up[0] * mss->cam->up[2];
-    mss->cam->right[2] = mss->cam->view_direction_up[0] * mss->cam->up[1] - mss->cam->view_direction_up[1] * mss->cam->up[0];
+    mss->cam2->right[0] = mss->cam2->view_direction_up[1] * mss->cam2->up[2] - mss->cam2->view_direction_up[2] * mss->cam2->up[1];
+    mss->cam2->right[1] = mss->cam2->view_direction_up[2] * mss->cam2->up[0] - mss->cam2->view_direction_up[0] * mss->cam2->up[2];
+    mss->cam2->right[2] = mss->cam2->view_direction_up[0] * mss->cam2->up[1] - mss->cam2->view_direction_up[1] * mss->cam2->up[0];
     // Calcul de la norme du vecteur de direction right
-    mss->cam->view_direction_norm_right = sqrt(pow(mss->cam->right[0], 2) + pow(mss->cam->right[1], 2) + pow(mss->cam->right[2], 2));
+    mss->cam2->view_direction_norm_right = sqrt(pow(mss->cam2->right[0], 2) + pow(mss->cam2->right[1], 2) + pow(mss->cam2->right[2], 2));
     // Normalisation du vecteur de direction right
     i = 0;
     while (i < 3)
     {
-        mss->cam->view_direction_right[i] /= mss->cam->view_direction_norm_right;
+        mss->cam2->view_direction_right[i] /= mss->cam2->view_direction_norm_right;
         i++;
     }
     // Calcul de la norme du vecteur de direction up
-    mss->cam->view_direction_norm_up = sqrt(pow(mss->cam->view_direction_up[0], 2) + pow(mss->cam->view_direction_up[1], 2) + pow(mss->cam->view_direction_up[2], 2));
+    mss->cam2->view_direction_norm_up = sqrt(pow(mss->cam2->view_direction_up[0], 2) + pow(mss->cam2->view_direction_up[1], 2) + pow(mss->cam2->view_direction_up[2], 2));
     // Normalisation du vecteur de direction up
     i = 0;
     while (i < 3)
     {
-        mss->cam->view_direction_up[i] /= mss->cam->view_direction_norm_up;
+        mss->cam2->view_direction_up[i] /= mss->cam2->view_direction_norm_up;
         i++;
     }
     // Calcul de la moitié de la largeur de l'écran à une distance focale donnée
-    mss->cam->half_width = mss->cam->focal_length * tan(0.5 * mss->cam->fov * M_PI / 180.0);
-    mss->cam->half_height = mss->cam->half_width / mss->cam->aspect_ratio;
+    mss->cam2->half_width = mss->cam2->focal_length * tan(0.5 * mss->cam2->fov * M_PI / 180.0);
+    mss->cam2->half_height = mss->cam2->half_width / mss->cam2->aspect_ratio;
 }
 
 void    ft_affichage_plan_camera(t_mss *mss)
