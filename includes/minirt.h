@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/23 13:57:03 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 17:33:14 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_mss
 	int				plnum;
 	int				spnum;
 	int				cylnum;
+	int				resolution;
 }   				t_mss;
 
 /*--  MEMORY FONCTION  ---*/
@@ -124,7 +125,8 @@ void    ft_print_list(t_list *file);
 void	ft_putstr_fd(char *s, int fd);
 
 /*--  02 - INITIATION FONCTION  ---*/
-void    ft_init_mat(t_mss *mss);
+void    ft_init_val(t_mss *mss);
+void    ft_init_mod(t_mss *mss, int i);
 
 /*--  02 - PARSING FONCTION  ---*/
 void    ft_parsing(t_mss *mss, char *argv);
@@ -152,12 +154,13 @@ int    ft_which_maj(char *str, int *flag_a, int *flag_l, int *flag_c);
 int	    get_rgba(int r, int g, int b, int a);
 
 /*--  OBJECT FONCTION  ---*/
-void    ft_plan_drawing(t_mss *mss);
+void	ft_fetch_form(t_mss *mss);
+void    ft_plan_drawing(t_mss *mss, int i);
 double	ft_deg_rad(int deg);
 int 	ft_is_out_of_range(int x, int y);
 void    ft_cylinder_drawing(t_mss *mss);
 void    ft_circle_drawing(t_mss *mss);
-void    ft_circle_2_drawing(t_mss *mss);
+void    ft_circle_2_drawing(t_mss *mss, int i);
 // void    ft_apply_trans(t_mss *mss, int x, int y, int z);
 
 /*--  CAMERA FONCTION  ---*/

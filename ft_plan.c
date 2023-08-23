@@ -6,30 +6,25 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:19:42 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/20 14:20:19 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 17:40:01 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minirt.h"
 
-void    ft_plan_drawing(t_mss *mss)
+void    ft_plan_drawing(t_mss *mss, int i)
 {
-    // (void)mss;
     int x;
     int y;
     int z;
-    double a;
-    double b;
-    double c;
-    double d;
+    double a = mss->tac[i]->po[0];
+    double b = mss->tac[i]->po[1];
+    double c = mss->tac[i]->po[2];
+    double d = mss->tac[i]->vec[0];
     // double new_x;
     // double new_y;
     // int rad;
     
-    a = 0.0;
-    b = 1.0;
-    c = 1.0;
-    d = 1.0;
     y = 0;
     x = 0;
     // rad = ft_deg_rad(0);
@@ -45,7 +40,7 @@ void    ft_plan_drawing(t_mss *mss)
             {
                 if (ft_is_out_of_range(x, y) == 1)
                     break;
-                mlx_put_pixel(mss->img, x, y, get_rgba(199, 0, 57, 255));
+                mlx_put_pixel(mss->img, x, y, get_rgba(mss->tac[i]->rgb[0], mss->tac[i]->rgb[1], mss->tac[i]->rgb[2], 10));
             }
             x++;
         }

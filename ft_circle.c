@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 15:07:27 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/23 14:15:14 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 17:30:10 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,19 @@ void    ft_circle_drawing(t_mss *mss)
     }
 }
 
-void    ft_circle_2_drawing(t_mss *mss)
+void    ft_circle_2_drawing(t_mss *mss, int i)
 {
-    double a = 100.0;
-    double b = 100.0;
-    double c = 100.0;
-    double r = 50.0;
+    double a = mss->circ[i]->spo[0];
+    double b = mss->circ[i]->spo[1];
+    double c = mss->circ[i]->spo[2];
+    double r = mss->circ[i]->diam / 2;
     double equation;
     int x;
     int y;
     int z;
 
     x = (int)(a - r);
+    // ft_init_mod(mss, i);
     while (x <= (int)(a + r))
     {
         y = (int)(b - r);
@@ -127,12 +128,29 @@ void    ft_circle_2_drawing(t_mss *mss)
                 equation = pow(x - a, 2) + pow(y - b, 2) + pow(z - c, 2);
                 if (equation <= pow(r, 2))
                 {
-                    mlx_put_pixel(mss->img, x + 100, y + 100, get_rgba(88, 24, 69, 255));
+                    if (ft_is_out_of_range(x, y) == 0)
+                    {
+                        // mss->circ[i]->mod[y][x] = z;
+                        mlx_put_pixel(mss->img, x, y, get_rgba(mss->circ[i]->rgb[0], mss->circ[i]->rgb[1], mss->circ[i]->rgb[2], 255));
+                    }
                 }
                 z++;
             }
             y++;
         }
         x++;
+    }
+}
+
+void    ft_init_mod(t_mss *mss, int i)
+{
+    int j;
+
+    j = 0;
+    mss->circ[i]->mod = ft_calloc(sizeof(int*), pow(mss->circ[i]->diam, 3));
+    while (j < pow(mss->circ[i]->diam, 3))
+    {
+        mss->circ[i]->mod[j] =  ft_calloc(sizeof(int), pow(mss->circ[i]->diam, 3));
+        j++;
     }
 }
