@@ -70,8 +70,10 @@ $(OBJS): %.o:%.c
 
 clean :
 		$(RM) $(OBJS)
+		$(RM) $(LIBDIR)*.o
 
 fclean : clean
 	$(RM) $(NAME)
+	$(RM) $(LIBDIR)$(LIBFT)
 	
 re : fclean all

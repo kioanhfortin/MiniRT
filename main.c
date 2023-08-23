@@ -85,7 +85,7 @@ int main(int argc, char **argv)
         mlx_close_hook(mss->mlx, on_destroy, mss->mlx);
         mlx_key_hook(mss->mlx, print_key, mss->mlx);
         ft_plan_drawing(mss);
-        // mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
+         //mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
         mlx_image_to_window(mss->mlx, mss->img, 0, 0);
         mlx_loop(mss->mlx);
     }
