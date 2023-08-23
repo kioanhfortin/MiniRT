@@ -117,6 +117,7 @@ t_pl	*ft_fetch_plan(char *str);
 t_sp	*ft_fetch_sphere(char *str);
 t_cy	*ft_fetch_cylinder(char *str);
 char	*acquire_data(char *inc, int nums[3]);
+void	acquire_nums(t_mss *mss, t_list *file);
 char 	*ft_copy_ext(char *str, int i);
 int 	ft_tchek_file_name(char *str);
 int		ft_strcmp(char *s1, char *s2);

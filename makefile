@@ -27,7 +27,7 @@ RM = rm -r
 #							 		FILES								  	  #
 ###############################################################################
 
-SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c ft_check_ext.c parsing.c\
+SRCS = 	main.c keyhooks.c ft_utilis.c ft_color.c ft_check_ext.c parsing.c parsing2.c\
 		ft_check_file.c includes/get_next_line.c includes/get_next_line_utilis.c\
 		ft_plan.c\
 
