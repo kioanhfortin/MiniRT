@@ -94,7 +94,7 @@ char	*acquire_data(char *inc, int nums[3])
 		while (i < 3)
 		{
 			nums[i] = ft_atoi(inc);
-			while (*inc != ',' && *inc != ' ')
+			while (*inc != '\0' && *inc != ',' && *inc != ' ')
 				inc++;
 			if (*inc == ',')
 				inc++;
