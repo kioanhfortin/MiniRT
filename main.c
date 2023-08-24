@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 11:06:17 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/21 11:19:30 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 13:50:08 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,14 @@ int main(int argc, char **argv)
         mss->img = mlx_new_image(mss->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
         mlx_close_hook(mss->mlx, on_destroy, mss->mlx);
         mlx_key_hook(mss->mlx, print_key, mss->mlx);
+        ft_set_up_camera(mss);
+        ft_affichage_plan_camera(mss);
         ft_plan_drawing(mss);
-         //mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
+        ft_plan_drawing(mss);
+        ft_circle_drawing(mss);
+        ft_cylinder_drawing(mss);
+        ft_circle_2_drawing(mss);
+        // mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
         mlx_image_to_window(mss->mlx, mss->img, 0, 0);
         mlx_loop(mss->mlx);
     }

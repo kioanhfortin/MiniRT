@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 10:53:57 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/21 11:18:35 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/23 13:57:03 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,31 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+#include <math.h>
 # include <stdlib.h>
 
 # define WINDOW_WIDTH 2000
 # define WINDOW_HEIGHT 1180
 
 /*--  DATA STRUCTURES  --*/
+typedef struct s_cam2
+{
+	double	coor_position[3]; 	// Camera position (x, y, z);
+	double	coor_look[3];		// Point where the camera is looking;
+	double	view_direction_up[3];
+	double	view_direction_right[3];
+	double 	up[3];				// Up vector (normalized)
+	double 	right[3];			// Right vector & up vector are needed to construct le systeme de coor local de la camera
+	
+	double	fov;				//Field of view in degrees
+	double	aspect_ratio;		//Width/height ratio of the sensor
+	double 	focal_length;		//Focal lenght of the lens
+	double	aperture;			//Aperture size for depth of field
+	double	view_direction_norm_up;	//assurer la precision des calculs de vision en 3D
+	double	view_direction_norm_right;
+	double half_width;
+	double half_height;
+}	t_cam2;
 
 typedef struct s_list
 {
@@ -81,6 +100,7 @@ typedef struct s_cy
 
 typedef struct s_mss
 {
+ 	t_cam2			*cam2;
     mlx_image_t		*img;
 	mlx_t			*mlx;
     int 			**mat;
@@ -133,9 +153,16 @@ int	    get_rgba(int r, int g, int b, int a);
 
 /*--  OBJECT FONCTION  ---*/
 void    ft_plan_drawing(t_mss *mss);
-// void    ft_apply_trans(t_mss *mss, int x, int y, int z);
 double	ft_deg_rad(int deg);
-int ft_is_out_of_range(int x, int y);
+int 	ft_is_out_of_range(int x, int y);
+void    ft_cylinder_drawing(t_mss *mss);
+void    ft_circle_drawing(t_mss *mss);
+void    ft_circle_2_drawing(t_mss *mss);
+// void    ft_apply_trans(t_mss *mss, int x, int y, int z);
+
+/*--  CAMERA FONCTION  ---*/
+void	ft_set_up_camera(t_mss *mss);
+void    ft_affichage_plan_camera(t_mss *mss);
 
 /*--  ERROR FONCTION  ---*/
 void    ft_write_error(void);
