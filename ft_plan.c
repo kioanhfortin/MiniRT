@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/20 14:19:42 by kfortin           #+#    #+#             */
-/*   Updated: 2023/08/23 17:40:01 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/24 09:51:46 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void    ft_plan_drawing(t_mss *mss, int i)
     y = 0;
     x = 0;
     // rad = ft_deg_rad(0);
-    while (y < 800)
+    while (y < WINDOW_HEIGHT)
     {
         x = 0;
-        while (x < 800)
+        while (x < WINDOW_WIDTH)
         {
             z = ((-a * x - b * y - d) / c);
             // new_x = x *cos(rad) - y *cos(rad);
@@ -40,7 +40,7 @@ void    ft_plan_drawing(t_mss *mss, int i)
             {
                 if (ft_is_out_of_range(x, y) == 1)
                     break;
-                mlx_put_pixel(mss->img, x, y, get_rgba(mss->tac[i]->rgb[0], mss->tac[i]->rgb[1], mss->tac[i]->rgb[2], 10));
+                mlx_put_pixel(mss->img, x, y, get_rgba(mss->tac[i]->rgb[0], mss->tac[i]->rgb[1], mss->tac[i]->rgb[2], 100));
             }
             x++;
         }

@@ -6,7 +6,7 @@
 /*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 13:36:40 by fboulang          #+#    #+#             */
-/*   Updated: 2023/08/23 16:55:14 by kfortin          ###   ########.fr       */
+/*   Updated: 2023/08/24 09:47:43 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*acquire_data(char *inc, int nums[3])
 		while (i < 3)
 		{
 			nums[i] = ft_atoi(inc);
-			while (*inc != ',' && *inc != ' ')
+			while (*inc != '\0' && *inc != ',' && *inc != ' ')
 				inc++;
 			if (*inc == ',')
 				inc++;
