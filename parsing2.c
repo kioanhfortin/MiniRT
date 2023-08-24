@@ -57,31 +57,30 @@ t_sp	*ft_fetch_sphere(char *str)
 t_cy	*ft_fetch_cylinder(char *str)
 {
 	t_cy	*cylinder;
+	char	*inc;
 
+	inc = str;
 	cylinder = ft_calloc(1, sizeof(t_cy));
-	str += 2;
-	while (*str != '\0' && *str == ' ')
-		str++;
-	str = acquire_data(str, cylinder->co);
-	while (*str != '\0' && *str == ' ')
-	{
-		str++;
-		printf("hello\n");	
-	}
-	str = acquire_data(str, cylinder->vec);
-	while (*str != '\0' && *str == ' ')
-		str++;
-	cylinder->diam = ft_atoi(str);
-	while (*str != '\0' && *str != ' ')
-		str++;
-	while (*str != '\0' && *str == ' ')
-		str++;
-	cylinder->height = ft_atoi(str);
-	while (*str != '\0' && *str != ' ')
-		str++;
-	while (*str != '\0' && *str == ' ')
-		str++;
-	str = acquire_data(str, cylinder->rgb);
+	inc += 2;
+	while (*inc != '\0' && *inc == ' ')
+		inc++;
+	inc = acquire_data(inc, cylinder->co);
+	while (*inc != '\0' && *inc == ' ')
+		inc++;
+	inc = acquire_data(inc, cylinder->vec);
+	while (*inc != '\0' && *inc == ' ')
+		inc++;
+	cylinder->diam = ft_atoi(inc);
+	while (*inc != '\0' && *inc != ' ')
+		inc++;
+	while (*inc != '\0' && *inc == ' ')
+		inc++;
+	cylinder->height = ft_atoi(inc);
+	while (*inc != '\0' && *inc != ' ')
+		inc++;
+	while (*inc != '\0' && *inc == ' ')
+		inc++;
+	inc = acquire_data(inc, cylinder->rgb);
 	return (cylinder);
 }
 
