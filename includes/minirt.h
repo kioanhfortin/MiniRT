@@ -46,6 +46,19 @@ typedef struct s_cam2
 	double half_height;
 }	t_cam2;
 
+typedef struct s_pix
+{
+	double	pixel_x;
+	double	pixel_y;
+}			t_pix;
+
+typedef struct s_ray
+{
+	double	ray_direction_x;
+	double	ray_direction_y;
+	double	ray_direction_z;
+}			t_ray;
+
 typedef struct s_list
 {
 	void			*str;
@@ -101,6 +114,8 @@ typedef struct s_cy
 typedef struct s_mss
 {
  	t_cam2			*cam2;
+	t_pix			pixs;
+	t_ray			ray;
     mlx_image_t		*img;
 	mlx_t			*mlx;
     int 			**mat;

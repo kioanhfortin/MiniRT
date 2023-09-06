@@ -136,3 +136,28 @@ void    ft_circle_2_drawing(t_mss *mss)
         x++;
     }
 }
+
+void    ft_intersection_sp(t_mss *mss, i)
+{
+    mss->circ[i]->spo[0]; //point centre
+    mss->circ[i]->spo[1];
+    mss->circ[i]->spo[2];
+    //mss->vis.pov[0] (x), mss->vis.pov[1] (y), mss->vis.pov[2] (z); //point d'origine de la cam
+    mss->circ[i]->diam / 2;
+
+    mss->cam2->coor_position[0];
+    mss->cam2->coor_position[1];
+    mss->cam2->coor_position[2];
+
+    mss->ray.ray_direction_x;
+    mss->ray.ray_direction_y;
+    mss->ray.ray_direction_z;
+
+    //(x - Cx)² + (y - Cy)² + (z - Cz)² = R²;
+    (t*(dx) - Cx)² + (t*(dy) - Cy)² + (t*(dz) - Cz)² = R²;
+    pow((t* (mss->ray.ray_direction_x) - mss->circ[i]->spo[0]), 2) + pow(((t *(mss->ray.ray_direction_y) - mss->circ[i]->spo[1])), 2) + pow((t*(mss->ray.ray_direction_z) - mss->circ[i]->spo[2]), 2) = pow(mss->circ[i]->diam / 2, 2);
+    
+    //calculer t a partir de 2 points (camera object);
+    t² * (dx)² + t² * (dy)² + t² * (dz)² - 2t(dxCx + dyCy + dz*Cz) + Cx² + Cy² + Cz² - R² = 0;
+    //if (!= 0) pas toucher object sp[i];
+}
