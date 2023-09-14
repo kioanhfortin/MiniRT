@@ -14,23 +14,20 @@
 
 void    ft_check_legit(t_list *file)
 {
-    int i;
     int flag_a;
     int flag_l;
     int flag_c;
     
-
-    i = 0;
     flag_a = 0;
     flag_l = 0;
     flag_c = 0;
     while (file)
     {
-        if (file->str)
+        if (file->content)
         {
-            if (ft_check_only_one_per_line(file->str) == 0)
+            if (ft_check_only_one_per_line(file->content) == 0)
                 ft_write_error_2(file);
-            if (ft_which_maj(file->str, &flag_a, &flag_l, &flag_c) == 0)
+            if (ft_which_maj(file->content, &flag_a, &flag_l, &flag_c) == 0)
                 ft_write_error_3(file);
         }
         file = (struct s_list *)file->next;

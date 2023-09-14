@@ -73,12 +73,10 @@ void	ft_set_up_camera(t_mss *mss)
 
 void    ft_affichage_plan_camera(t_mss *mss)
 {
-    double pixel_x;
-    double pixel_y;
-    int x;
-    int y;
+    int     x;
+    int     y;
+    double t;
 
-    (void)mss;
     y = 0;
     while (y < WINDOW_HEIGHT)
     {
@@ -86,11 +84,28 @@ void    ft_affichage_plan_camera(t_mss *mss)
         while (x < WINDOW_WIDTH)
         {
             // Calcul des coordonnées du pixel sur le plan de la caméra
-            pixel_x = (x + 0.5) / WINDOW_WIDTH - 0.5;
-            pixel_y = -(y + 0.5) / WINDOW_HEIGHT + 0.5;
+            mss->pixs.pixel_x = (x + 0.5) / WINDOW_WIDTH - 0.5;
+            mss->pixs.pixel_y = -(y + 0.5) / WINDOW_HEIGHT + 0.5;
             // Calcul de la direction du rayon pour chaque point d'un object
+            // r(ray) = r(0) + vt <-
+            ft_ray_trace(mss);
+            if (ft_intersection_sp(mss, 1, &t) == 1)
+                mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
             x++;
         }
         y++;
     }
+}
+
+void    ft_ray_trace(t_mss *mss)
+{
+    double x;
+    double y;
+
+    x = (2.0 * mss->pixs.pixel_x - 1.0) * mss->cam2->aspect_ratio * tan(mss->cam2->fov * 0.5);
+    y = 1.0 - 2.0 * mss->pixs.pixel_y * tan(mss->cam2->fov * 0.5);
+
+    mss->ray.ray_direction_x = x;
+    mss->ray.ray_direction_y = y;
+    mss->ray.ray_direction_z = -1.0;
 }

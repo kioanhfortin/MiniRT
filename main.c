@@ -12,7 +12,7 @@
 
 #include "includes/minirt.h"
 
-void    ft_print_list(t_list *file)
+/*void    ft_print_list(t_list *file)
 {
     while (file != NULL)
     {
@@ -20,7 +20,7 @@ void    ft_print_list(t_list *file)
         printf("%s\n", file->str);
         file = (struct s_list *)file->next;
     }
-}
+}*/
 
 void    ft_parsing(t_mss *mss, char *argv)
 {
@@ -34,10 +34,10 @@ void    ft_parsing(t_mss *mss, char *argv)
     file = NULL;
     ft_tchek_file_name(argv);
     fd = open(argv, O_RDONLY);
-    file = ft_lstnew(get_next_line(fd));
+    file = (struct s_list *)ft_lstnew(get_next_line(fd));
     node = file;
-    str = file->str;
-    if (file->str == NULL)
+    str = file->content;
+    if (file->content == NULL)
         ft_write_error();
     i++;
     while (str != NULL)
@@ -60,6 +60,7 @@ void    ft_init_val(t_mss *mss)
 void ft_fetch_form(t_mss *mss)
 {
     int i;
+    double t;
 
     i = 0;
     while (i < mss->plnum)
@@ -70,7 +71,8 @@ void ft_fetch_form(t_mss *mss)
     i = 0;
     while (i < mss->spnum)
     {
-        ft_circle_2_drawing(mss, i);
+        // ft_circle_2_drawing(mss, i);
+        //ft_intersection_sp(mss, i, &t);
         i++;
     }
     // i = 0;
@@ -101,7 +103,7 @@ int main(int argc, char **argv)
         mlx_key_hook(mss->mlx, print_key, mss->mlx);
         // ft_set_up_camera(mss);
         // ft_affichage_plan_camera(mss);
-        ft_fetch_form(mss);
+        //ft_fetch_form(mss);
         // ft_plan_drawing(mss);
         // ft_circle_drawing(mss);
         // ft_cylinder_drawing(mss);

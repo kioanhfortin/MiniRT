@@ -24,9 +24,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = -1;
 	if (!s2)
 		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	strjoin = ft_calloc(len1 + len2 + 1, sizeof(char));
+	len1 = ft_strlen_2(s1);
+	len2 = ft_strlen_2(s2);
+	strjoin = ft_calloc_2(len1 + len2 + 1, sizeof(char));
 	if (!strjoin)
 		return (NULL);
 	while (++i < len1)
@@ -39,7 +39,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (strjoin);
 }
 
-size_t	ft_strlen(char *s)
+size_t	ft_strlen_2(char *s)
 {
 	size_t	i;
 
@@ -49,7 +49,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc_2(size_t count, size_t size)
 {
 	void	*str;
 	size_t	i;
@@ -60,18 +60,18 @@ void	*ft_calloc(size_t count, size_t size)
 	str = malloc(sizeof(char) * i);
 	if (!str)
 		return (NULL);
-	ft_memset(str, 0, i);
+	ft_memset_2(str, 0, i);
 	return (str);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset_2(void *b, int c, size_t len)
 {
 	while (len-- > 0)
 		((unsigned char *)b)[len] = (unsigned char)c;
 	return (b);
 }
 
-int	ft_strchr(char *stash)
+int	ft_strchr_2(char *stash)
 {
 	int	i;
 

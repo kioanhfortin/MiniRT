@@ -154,3 +154,61 @@ void    ft_init_mod(t_mss *mss, int i)
         j++;
     }
 }
+
+double dot(t_ray a, t_ray b)
+{
+    return (a.ray_direction_x * b.ray_direction_x + a.ray_direction_y * b.ray_direction_y + a.ray_direction_z * b.ray_direction_z);
+}
+
+int    ft_intersection_sp(t_mss *mss, int i, double *t)
+{
+    /*mss->circ[i]->spo[0]; //point centre
+    mss->circ[i]->spo[1];
+    mss->circ[i]->spo[2];
+    //mss->vis.pov[0] (x), mss->vis.pov[1] (y), mss->vis.pov[2] (z); //point d'origine de la cam
+    mss->circ[i]->diam / 2;
+
+    mss->cam2->coor_position[0];
+    mss->cam2->coor_position[1];
+    mss->cam2->coor_position[2];
+
+    mss->ray.ray_direction_x;
+    mss->ray.ray_direction_y;
+    mss->ray.ray_direction_z;*/
+
+    t_ray *oc;
+
+    oc = ft_calloc(sizeof(t_ray), 1);
+    oc->ray_direction_x = mss->cam2->coor_position[0] - mss->circ[i]->spo[0];
+    oc->ray_direction_y = mss->cam2->coor_position[1] - mss->circ[i]->spo[1];
+    oc->ray_direction_z = mss->cam2->coor_position[2] - mss->circ[i]->spo[2];
+
+    double a = dot(mss->ray, mss->ray); //A
+    double b = 2.0 * dot(*oc, mss->ray);
+    double c = dot(*oc, *oc) - ((mss->circ[i]->diam / 2) * (mss->circ[i]->diam / 2));
+
+    double discriminant = b * b - 4.0 * a * c;
+
+    if (discriminant < 0.0)
+        return (0);
+    else
+    {
+        double t1 = (-b - sqrt(discriminant)) / (2.0 * a);
+        double t2 = (-b + sqrt(discriminant)) / (2.0 * a);
+
+        if (t1 > 0.0 || t2 > 0.0)
+        {
+            *t = (t1 < t2) ? t1 : t2;
+            return (1); //Il y a une intersection
+        }
+        else
+            return (0); //les intersections sont derriere le rayon
+    }
+    //(x - Cx)² + (y - Cy)² + (z - Cz)² = R²;
+    //(t*(dx) - Cx)² + (t*(dy) - Cy)² + (t*(dz) - Cz)² = R²;
+    // pow((t* (mss->ray.ray_direction_x) - mss->circ[i]->spo[0]), 2) + pow(((t *(mss->ray.ray_direction_y) - mss->circ[i]->spo[1])), 2) + pow((t*(mss->ray.ray_direction_z) - mss->circ[i]->spo[2]), 2) = pow(mss->circ[i]->diam / 2, 2);
+    
+    //calculer t a partir de 2 points (camera object);
+    // t² * (dx)² + t² * (dy)² + t² * (dz)² - 2t(dxCx + dyCy + dz*Cz) + Cx² + Cy² + Cz² - R² = 0;
+    //if (!= 0) pas toucher object sp[i];
+}

@@ -15,16 +15,17 @@
 
 # include "./get_next_line.h"
 # include "../MLX42/include/MLX42/MLX42.h"
-//# include "./libft/libft.h"
+# include "./libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
-#include <math.h>
 # include <stdlib.h>
 
-# define WINDOW_WIDTH 2000
-# define WINDOW_HEIGHT 1180
+# include <GLFW/glfw3.h>
+
+# define WINDOW_WIDTH 1080
+# define WINDOW_HEIGHT 900
 
 /*--  DATA STRUCTURES  --*/
 typedef struct s_cam2
@@ -46,11 +47,19 @@ typedef struct s_cam2
 	double half_height;
 }	t_cam2;
 
-typedef struct s_list
+typedef struct s_pix
 {
-	void			*str;
-	struct t_list	*next;
-}					t_list;
+	double	pixel_x;
+	double	pixel_y;
+}			t_pix;
+
+typedef struct s_ray
+{
+	double	ray_direction_x;
+	double	ray_direction_y;
+	double	ray_direction_z;
+}			t_ray;
+
 
 typedef struct s_alight
 {
@@ -101,6 +110,8 @@ typedef struct s_cy
 typedef struct s_mss
 {
  	t_cam2			*cam2;
+	t_pix			pixs;
+	t_ray			ray;
     mlx_image_t		*img;
 	mlx_t			*mlx;
     int 			**mat;
@@ -117,12 +128,8 @@ typedef struct s_mss
 }   				t_mss;
 
 /*--  MEMORY FONCTION  ---*/
-void	ft_lstadd_back(t_list **lst, t_list *new);
-t_list	*ft_lstnew(void *content);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_listclear(t_list *head);
 void    ft_print_list(t_list *file);
-void	ft_putstr_fd(char *s, int fd);
+
 
 /*--  02 - INITIATION FONCTION  ---*/
 void    ft_init_val(t_mss *mss);
@@ -162,10 +169,12 @@ void    ft_cylinder_drawing(t_mss *mss);
 void    ft_circle_drawing(t_mss *mss);
 void    ft_circle_2_drawing(t_mss *mss, int i);
 // void    ft_apply_trans(t_mss *mss, int x, int y, int z);
+int    ft_intersection_sp(t_mss *mss, int i, double *t);
 
 /*--  CAMERA FONCTION  ---*/
 void	ft_set_up_camera(t_mss *mss);
 void    ft_affichage_plan_camera(t_mss *mss);
+void    ft_ray_trace(t_mss *mss);
 
 /*--  ERROR FONCTION  ---*/
 void    ft_write_error(void);

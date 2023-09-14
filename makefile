@@ -20,7 +20,7 @@ GIT_MLX = https://github.com/codam-coding-college/MLX42.git
 ###############################################################################
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wextra -Werror
 RM = rm -r
 
 ###############################################################################
@@ -45,21 +45,23 @@ all : install $(NAME)
 
 $(NAME) : $(MLX) $(OBJS)
 	$(MAKE) -C $(LIBDIR)
-	$(CC) $(OBJS) $(LIBDIR)$(LIBFT) $(MLX) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib" -o $(NAME) $(MLX)
+	gcc main.c keyhooks.c ft_utilis.c ft_color.c ft_check_ext.c parsing.c parsing2.c ft_check_file.c includes/get_next_line.c includes/get_next_line_utilis.c ft_plan.c ft_cylindre.c ft_circle.c ft_camera.c /home/kfortin/42_student/mini_RT/MLX42/build/libmlx42.a /home/kfortin/42_student/mini_RT/includes/libft/libft.a -Iinclude -ldl -lglfw -pthread -lm
+#$(CC) $(OBJS) $(LIBDIR)$(LIBFT) $(MLX) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib" -o $(NAME) $(MLX)
+
 
 install :
 
 $(MLX) :
-			brew update --quiet
-			if brew list cmake &> /dev/null; then \
+			sudo apt update --quiet
+			if apt list cmake &> /dev/null; then \
 			echo "Process 1 : cmake"; \
 	else \
-			brew install cmake &> /dev/null; \
+			sudo apt install cmake &> /dev/null; \
 	fi 
-			if brew list glfw &> /dev/null; then \
+			if apt list glfw &> /dev/null; then \
 			echo "Process 2 : brew"; \
 	else \
-			brew install glfw &> /dev/null; \
+			apt install glfw &> /dev/null; \
 	fi
 			git clone $(GIT_MLX) &> /dev/null
 			cd MLX42/ && cmake -B build &> /dev/null

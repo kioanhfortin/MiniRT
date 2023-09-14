@@ -38,8 +38,8 @@ OBJB = $(SRCSB:.c=.o)
 
 all: $(NAME) $(SRCS)
 
-$(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS) 
+$(NAME): $(OBJS) $(OBJB)
+	$(AR) $(NAME) $(OBJS) $(OBJB)
 
 clean: 
 	$(RM) $(OBJS) $(OBJB)

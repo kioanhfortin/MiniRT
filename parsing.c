@@ -17,7 +17,7 @@ void	ft_fetch_info(t_list *file, t_mss *mss)
 	char	*temp;
 	t_list	*help;
 
-	temp = (char *)file->str;
+	temp = (char *)file->content;
 	help = file;
 	acquire_nums(mss, file);
 	mss->plnum = 0;
@@ -38,7 +38,7 @@ void	ft_fetch_info(t_list *file, t_mss *mss)
 		/*else if (*temp == 'c')
 			mss->cyl[mss->cylnum++] = ft_fetch_cylinder(temp);*/
 		help = (struct s_list *)help->next;
-		temp = (char *)help->str;
+		temp = (char *)help->content;
 	}
 }
 
@@ -60,9 +60,9 @@ void	ft_fetch_alight(char *str, t_mss *mss)
 void	ft_fetch_cam(char *str, t_mss *mss)
 {
 	char	*inc;
-	int		i;
+	//int		i;
 
-	i = 0;
+	//i = 0;
 	inc = str;
 	inc++;
 	while (*inc != '\0' && *inc == ' ')
@@ -79,9 +79,9 @@ void	ft_fetch_cam(char *str, t_mss *mss)
 void	ft_fetch_light(char *str, t_mss *mss)
 {
 	char	*inc;
-	int		i;
+	//int		i;
 
-	i = 0;
+	//i = 0;
 	inc = str;
 	inc++;
 	while (*inc != '\0' && *inc == ' ')

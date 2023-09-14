@@ -111,7 +111,7 @@ void	acquire_nums(t_mss *mss, t_list *file)
 	char	*temp;
 
 	help = file;
-	temp = (char *)help->str;
+	temp = (char *)help->content;
 	mss->plnum = 0;
 	mss->cylnum = 0;
 	mss->spnum = 0;
@@ -124,7 +124,7 @@ void	acquire_nums(t_mss *mss, t_list *file)
 		else if (*temp == 's')
 			mss->spnum++;
 		help = (struct s_list *)help->next;
-		temp = (char *)help->str;
+		temp = (char *)help->content;
 	}
 	mss->tac = ft_calloc(1 + mss->plnum, sizeof(t_pl *));
 	mss->circ = ft_calloc(1 + mss->spnum, sizeof(t_sp *));
