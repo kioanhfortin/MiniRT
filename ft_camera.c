@@ -75,8 +75,8 @@ void    ft_affichage_plan_camera(t_mss *mss)
 {
     int     x;
     int     y;
+    //double  t;
 
-    (void)mss;
     y = 0;
     while (y < WINDOW_HEIGHT)
     {
@@ -87,8 +87,11 @@ void    ft_affichage_plan_camera(t_mss *mss)
             mss->pixs.pixel_x = (x + 0.5) / WINDOW_WIDTH - 0.5;
             mss->pixs.pixel_y = -(y + 0.5) / WINDOW_HEIGHT + 0.5;
             // Calcul de la direction du rayon pour chaque point d'un object
-            // r(ray) = r(0) + vt <-
-            ft_ray_trace(t_mss *mss);
+            // r(ray) = r(0) + vt 
+            //ft_ray_trace(mss);
+            
+            //if (ft_intersection_sp(mss, 1, &t) == 1)
+                //mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255)); 
             x++;
         }
         y++;
@@ -100,10 +103,10 @@ void    ft_ray_trace(t_mss *mss)
     double normalized_x;
     double normalized_y;
 
-    normalised_x = (2.0 * mss->pixs.pixel_x - 1.0) * mss->cam2->aspect_ratio * tan(mss->cam2->fov * 0.5);
-    normalised_y = 1.0 - 2.0 * mss->pixs.pixel_y * tan(mss->cam2->fov * 0.5);
+    normalized_x = (2.0 * mss->pixs.pixel_x - 1.0) * mss->cam2->aspect_ratio * tan(mss->cam2->fov * 0.5);
+    normalized_y = 1.0 - 2.0 * mss->pixs.pixel_y * tan(mss->cam2->fov * 0.5);
 
-    mss->ray.ray_direction_x = normalised_x;
-    mss->ray.ray_direction_y = normalised_y;
+    mss->ray.ray_direction_x = normalized_x;
+    mss->ray.ray_direction_y = normalized_y;
     mss->ray.ray_direction_z = -1.0;
 }

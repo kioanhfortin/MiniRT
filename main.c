@@ -69,18 +69,33 @@ void    ft_parsing(t_mss *mss, char *argv)
 void ft_fetch_form(t_mss *mss)
 {
     int i;
+    double t;
+    int x;
+    int y;
 
-    i = 0;
-    /*while (i < mss->plnum)
+    /*i = 0;
+    while (i < mss->plnum)
     {
         ft_plan_drawing(mss, i); //a refaire probablement
         i++;
     }*/
     i = 0;
+    x = 0;
+    y = 0;
     while (i < mss->spnum)
     {
         //ft_circle_2_drawing(mss, i);
-        ft_intersection_sp(mss, i);
+        while (y < WINDOW_HEIGHT)
+        {
+            while (x < WINDOW_WIDTH)
+            {
+                ft_ray_trace(mss);   
+                if (ft_intersection_sp(mss, i, &t) == 1)
+                    mlx_put_pixel(mss->img, 5, 5, get_rgba(255, 255, 255, 255)); 
+                x++;
+            }
+            y++;  
+        }
         i++;
     }
 }
@@ -105,7 +120,6 @@ int main(int argc, char **argv)
         mlx_key_hook(mss->mlx, print_key, mss->mlx);
         ft_set_up_camera(mss);
         //lancer rayons
-        ft_affichage_plan_camera(mss);
         //ft_plan_drawing(mss); //intersection des chaques
         //ft_plan_drawing(mss);
         //ft_circle_drawing(mss);
@@ -113,6 +127,7 @@ int main(int argc, char **argv)
         //ft_circle_2_drawing(mss); 
         ft_fetch_form(mss);
         // mlx_put_pixel(mss->img, 600, 300, get_rgba(199, 0, 57, 255));
+        ft_affichage_plan_camera(mss);
         mlx_image_to_window(mss->mlx, mss->img, 0, 0);
         mlx_loop(mss->mlx);
     }

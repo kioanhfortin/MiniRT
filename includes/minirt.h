@@ -179,6 +179,11 @@ void    ft_circle_2_drawing(t_mss *mss);
 void	ft_set_up_camera(t_mss *mss);
 void    ft_affichage_plan_camera(t_mss *mss);
 
+/*-- RAY TRACING FUNCTION ---*/
+void    ft_ray_trace(t_mss *mss);
+int		ft_intersection_sp(t_mss *mss, int i, double *t);
+double	dot(t_ray a, t_ray b);
+
 /*--  ERROR FONCTION  ---*/
 void    ft_write_error(void);
 void    ft_write_error_2(t_list *file);
